@@ -8,11 +8,11 @@ Krav:
     - Oppgavene som krever kodeendring, kan enten gjøres lokalt på din maskin, eller bruke GitHub Desktop.
 
 ### Oppsett
-1. Gi GitHub brukernavnet til fasilitator, slik at dere kan bli invitert til organisasjonen: "msilabben". 
+1. Gi GitHub brukernavnet til fasilitator, slik at dere kan bli invitert til organisasjonen. 
 2. Godkjenn invitasjonen
 3. Gå til [cnapp-module](https://github.com/msilabben/cnapp-module)
 4. Klikk på "Fork" inne på cnapp-module repoet, oppe til høyre
-5. Velg organisasjonen "msilabben" som eier.
+5. Velg organisasjonen som eier.
 6. Trykk på "<> Code", og enten clone ned repoet lokalt på maskinen din eller trykk på headeren "Codespaces" og velg "Create codespace on main". 
 
 
@@ -44,9 +44,9 @@ Si ifra til fasilitator hvis dere møter på problemer.
 ### Signerte commits
 **Commit som noen andre**
 1. I terminalen, sjekk loggen til git (`git log`) for se om det er en bruker du kan commite for.
-2. Kopier brukernes nav og epost, og oppdater din egen git config med det nye navnet og eposten: 
-- `git config user.email "43639886+collinlokken@users.noreply.github.com"`
-- `git config user.name "Christopher Collin Løkken"`
+2. Kopier brukernes navn og epost, og oppdater din egen git config med det nye navnet og eposten: 
+- `git config user.email "tall+navn@users.noreply.github.com"`
+- `git config user.name "Navn Navnesen"`
 3. Gjør en vilkårlig forandring, legg de til og commit dem, og push til GitHub. 
 4. Gå til GitHub og se på commiten, og legg merke til hvilken bruker som committet forandringene. 
 5. Gå tilbake til codespaces, og sett eposten og navnet til ditt eget igjen. 
@@ -71,11 +71,11 @@ Si ifra til fasilitator hvis dere møter på problemer.
 ## Oppgaver - pipelines
 
 ### Legge til kjøring av test i pipeline
-1. Aktiver test ved å åpne .github/workflows/pull-request.yml, skroll ned til "backend-tests", og på linja med kommentaren, enten fjern linja eller sett den til "true".  
-2. Gå til backend/test/test_app.py og forandre status koden fra 200 til 100. 
+1. Aktiver test ved å åpne ".github/workflows/pull-request.yml", skroll ned til "backend-tests", og på linja med kommentaren, enten fjern linja eller sett den til "true".  
+2. Gå til "backend/test/test_app.py" og forandre status koden fra 200 til 100. 
 3. Add både "pull-requet.yml" filen og "test_app.py" filen. Commit med valgfri commit melding og push forandringene til GitHub. 
 4. Gå til GitHub, og gå til headeren "Actions". Hvis det er en grønn knapp der hvor det står: "I understand my workflows, go ahead and enable them", trykk på den knappen. Hvis det ikke er en slik knapp der, så trenger du ikke gjøre noe. 
-5. Deretter, lag en pull request, enten ved å klikke på den grønne knappen på repository forssiden som spør om du vil lage en pull request, eller ved å klikke på overskriften "Pull request", og deretter på den grønne knappen "New pull request". Husk å velge riktige branch, det skal på "base" være "main" (pass på at det er main-branchen i ditt eget repo, og ikke original repoet), mens "compare" skal være "developer_environment". 
+5. Deretter, lag en pull request, enten ved å klikke på den grønne knappen på repository forsiden som spør om du vil lage en pull request, eller ved å klikke på overskriften "Pull request", og deretter på den grønne knappen "New pull request". Husk å velge riktige branch, det skal på "base" være "main" (pass på at det er main-branchen i ditt eget repo, og ikke original repoet), mens "compare" skal være "developer_environment". 
 6. Inne på pull-requesten, se at det har blitt kjørt en workflow, og at "pull request / backend-test / pytest" har feilet. Workflowen kan også bli sett fra headeren "Actions".  
 7. Gå tilbake til codespacet og forandre status koden fra 100 til 200 i filen "backend/test/test_app.py". 
 8. Legg til forandringene, commit med valgfri melding og push til branchen. 
@@ -136,11 +136,11 @@ Si ifra til fasilitator hvis dere møter på problemer.
 1. Gå til settings i repositoriet, og velg "Advanced security" fra menyen til venstre. 
 2. Enable "Dependabot" ved å enable: 
 - Dependency graph
-- Dependabot alers 
+- Dependabot alerts 
 - Dependabot security updates
 - Dependabot version updates 
 3. Observer i PR'er at dependabot har kjørt og laget PR'er. Hvis det ikke er noen PR'er der, se i det originalet repoet. 
-4. Velg en PR som starter med "build(deps)".. 
+4. Velg en PR som starter med "build(deps)".
 5. Se at den samme workflowen som kjører i de tidligere pipelinene, kjører også nå. Siden sjekkene vil kjøre på dependabot sin PR, og dermed vil de andre sjekkene fange opp eventuelle ting som dependabot introduserer. 
 
 
@@ -157,12 +157,12 @@ Si ifra til fasilitator hvis dere møter på problemer.
 8. For letthetens skyld i denne workshopen, fiks følgende regler: 
 - Skru av "Require approval of the most recent push"
 - Sett "Required approvals" til 0 
-8. Tryk så på den grønne knappen "create". 
-9. Gjør om på det du gjorde istad på steg 2. Legg til og commit forandringene, og prøv å push til main. Hvis ikke det funker, prøv `git push --force`. 
+9. Tryk så på den grønne knappen "create". 
+10. Gjør om på det du gjorde istad på steg 2. Legg til og commit forandringene, og prøv å push til main. Hvis ikke det funker, prøv `git push --force`. 
 
 ### CODEOWNERS
 1. Gå til codespaces, og se på filen ".github/CODEOWNERS". 
-2. Bytt ut "@msilabben" med ditt eget brukernavn. 
+2. Bytt ut "@organisasjon/admin_group" med ditt eget brukernavn. 
 3. Legg til filen, commit forandringene og push til GitHub.
 4. Prøv å merge til main, går det? 
 5. Assign en av fasilitatorene til å review PRen. Og si ifra til dem muntlig. 
@@ -172,7 +172,7 @@ Si ifra til fasilitator hvis dere møter på problemer.
 2. Ta en titt på filen ".github/workflows/warn-big-pr.yml". Se i koden at den vil kjøre scriptet "bin/pr_comment.sh", og sender inn to verdier til det scriptet: "GITHUB_TOKEN" og "PR_THRESHOLD". 
 3. Gå til filen "bin/pr_comment.sh", og kommenter inn linjen som printer ut GitHub tokenen. 
 4. Legg til filene, commit med valgfri commitmelding, og push forandringene. 
-5. Gå til GitHub og opprett en ny pull request. Det skal nå gjøres enn pull request mot det originale repoet "msilabben/cnapp-module", så pass på at mottaker repoet er riktig. Godkjenn at det blir laget en ny pr. 
+5. Gå til GitHub og opprett en ny pull request. Det skal nå gjøres enn pull request mot det originale repoet "organisasjon/cnapp-module", så pass på at mottaker repoet er riktig. Godkjenn at det blir laget en ny pr. 
 6. Gå til PR'en og se at jobben kjører. 
 7. Finn hvor tokenen printer. 
 
