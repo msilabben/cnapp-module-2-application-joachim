@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/msilabben/cnapp-module-2-application/compare/frontend@v1.0.2...frontend@v1.0.3) (2026-05-22)
+
+
+### Bug Fixes
+
+* allow all hosts for vite host ([23ae697](https://github.com/msilabben/cnapp-module-2-application/commit/23ae697b8840dc4204f2a1485ec6cd52bf7df64f))
+
 ## [1.0.2](https://github.com/msilabben/cnapp-module/compare/frontend@v1.0.1...frontend@v1.0.2) (2026-05-03)
 
 
