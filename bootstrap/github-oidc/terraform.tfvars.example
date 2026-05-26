@@ -1,0 +1,9 @@
+subscription_id     = "00000000-0000-0000-0000-000000000000"
+tenant_id           = "00000000-0000-0000-0000-000000000000"
+location            = "westeurope"
+github_organization = "msilabben"
+github_repository   = "cnapp-module-2-application"
+github_environments = ["dev", "prod"]
+
+identity_resource_group_name = "rg-github-oidc"
+identity_name                = "id-github-application"
