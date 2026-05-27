@@ -71,7 +71,7 @@ jobs:
           kubectl create deployment backend \
             --namespace cnapp \
             --image "$IMAGE" \
-            --port 8000
+            --port 8000 \
             --dry-run=client -o yaml | kubectl apply -f -
                
           kubectl expose deployment backend \
@@ -79,14 +79,15 @@ jobs:
             --name backend \
             --port 8000 \
             --target-port 8000 \
-            --type ClusterIP
+            --type ClusterIP \
+            --dry-run=client -o yaml | kubectl apply -f -
 
           IMAGE="${ACR_NAME}.azurecr.io/${IMAGE_NAME_FRONTEND}:${VERSION}"
 
-          kubectl create deployment backend \
+          kubectl create deployment frontend \
             --namespace cnapp \
             --image "$IMAGE" \
-            --port 3000
+            --port 3000 \
             --dry-run=client -o yaml | kubectl apply -f -
             
           kubectl expose deployment frontend \
@@ -94,7 +95,8 @@ jobs:
             --name frontend \
             --port 3000 \
             --target-port 3000 \
-            --type ClusterIP
+            --type ClusterIP \
+            --dry-run=client -o yaml | kubectl apply -f -
 
       - name: Curl test
         run: |
