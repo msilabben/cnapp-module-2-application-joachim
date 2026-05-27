@@ -18,6 +18,16 @@ on:
         options:
           - dev
           - prod
+      frontend_image_version: 
+        description: "Frontend image version to deploy"
+        type: string
+        required: true
+        default: v1.0.0
+      backend_image_version: 
+        description: "Frontend image version to deploy"
+        type: string
+        required: true
+        default: v1.0.0
 
 permissions:
   contents: read
@@ -40,7 +50,8 @@ jobs:
       ACR_NAME: ${{ vars.ACR_NAME }}
       IMAGE_NAME_BACKEND: ${{ vars.IMAGE_NAME_BACKEND }}
       IMAGE_NAME_FRONTEND: ${{ vars.IMAGE_NAME_FRONTEND }}
-      VERSION: ${{ vars.VERSION }}
+      FRONTEND_VERSION: ${{ inputs.frontend_image_version }}
+      BACKEND_VERSION: ${{ inputs.backend_image_version }}
       AGFC_NAME: ${{ vars.AGFC_NAME }}
       AGFC_FRONTEND_NAME: ${{ vars.AGFC_FRONTEND_NAME }}
 
@@ -66,7 +77,7 @@ jobs:
         run: |
           kubectl create namespace cnapp --dry-run=client -o yaml | kubectl apply -f -
 
-          IMAGE="${ACR_NAME}.azurecr.io/${IMAGE_NAME_BACKEND}:${VERSION}"
+          IMAGE="${ACR_NAME}.azurecr.io/${IMAGE_NAME_BACKEND}:${BACKEND_VERSION}"
 
           kubectl create deployment backend \
             --namespace cnapp \
@@ -82,7 +93,7 @@ jobs:
             --type ClusterIP \
             --dry-run=client -o yaml | kubectl apply -f -
 
-          IMAGE="${ACR_NAME}.azurecr.io/${IMAGE_NAME_FRONTEND}:${VERSION}"
+          IMAGE="${ACR_NAME}.azurecr.io/${IMAGE_NAME_FRONTEND}:${FRONTEND_VERSION}"
 
           kubectl create deployment frontend \
             --namespace cnapp \
