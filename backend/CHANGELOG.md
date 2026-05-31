@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.2](https://github.com/msilabben/cnapp-module-2-application-testbruker1/compare/backend@v0.3.1...backend@v0.3.2) (2026-05-31)
+
+
+### Bug Fixes
+
+* Added some files ([eecee34](https://github.com/msilabben/cnapp-module-2-application-testbruker1/commit/eecee340eefde6a5534934054f16839913e531e0))
+
 ## [0.3.1](https://github.com/msilabben/cnapp-module-2-application-testbruker1/compare/backend@v0.3.0...backend@v0.3.1) (2026-05-31)
 
 
