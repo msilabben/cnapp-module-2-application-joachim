@@ -14,7 +14,7 @@ export default function App() {
     fetch(`/api/message`)
       .then(async (res) => {
         if (!res.ok) {
-          throw new Error(`API request failed with ${res.status}`)
+          throw new Error(`API request failed with statuscode: ${res.status}`)
         }
         return (await res.json()) as ApiResponse
       })
@@ -57,7 +57,7 @@ export default function App() {
           </div>
           <div className="mini-card">
             <h3>Deploy</h3>
-            <p>Each service ships with its own Dockerfile</p>
+            <p>Each ships with its own Dockerfile</p>
           </div>
         </div>
       </div>

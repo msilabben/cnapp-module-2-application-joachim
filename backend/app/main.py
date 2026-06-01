@@ -51,8 +51,8 @@ def create_app():
     @app.get("/api/message")
     def get_message():
         return {
-            "message": "Hello from FastAPI!",
-            "deployment": "This backend is container-friendly and ready for Codespaces."
+            "message": "Hello from FastAPI Backend!",
+            "deployment": "This is backend, acontainer-friendly and ready for Codespaces."
         }
 
     return app
