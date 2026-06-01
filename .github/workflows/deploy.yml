@@ -73,9 +73,8 @@ jobs:
       - name: Deploy cnapp to AKS with Azure Key Vault mounted secrets
         shell: bash
         env:
-
-          BACKEND_SECRET_NAME: backend-secret-name-in-keyvault
-          FRONTEND_SECRET_NAME: frontend-secret-name-in-keyvault
+          BACKEND_SECRET_NAME: backend-secret
+          FRONTEND_SECRET_NAME: frontend-secret
 
         run: |
           set -euo pipefail
