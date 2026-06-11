@@ -10,49 +10,49 @@ permissions:
   security-events: write
 
 env:
-  COSIGN_CERTIFICATE_IDENTITY: https://github.com/REPLACE_WITH_IMAGE_REPO_OWNER/REPLACE_WITH_IMAGE_REPO/.github/workflows/push-main.yml@refs/heads/main
+  COSIGN_CERTIFICATE_IDENTITY: https://github.com/msilabben/cnapp-module-4-builder/.github/workflows/push-main.yml@refs/heads/main
   COSIGN_CERTIFICATE_OIDC_ISSUER: https://token.actions.githubusercontent.com
 
-  SEMGREP_IMAGE: ghcr.io/REPLACE_WITH_GHCR_OWNER/semgrep@sha256:REPLACE_WITH_SEMGREP_DIGEST
-  TRIVY_IMAGE: ghcr.io/REPLACE_WITH_GHCR_OWNER/trivy@sha256:REPLACE_WITH_TRIVY_DIGEST
-  CONFTEST_IMAGE: ghcr.io/REPLACE_WITH_GHCR_OWNER/conftest@sha256:REPLACE_WITH_CONFTEST_DIGEST
+  SEMGREP_IMAGE: ghcr.io/msilabben/semgrep@sha256:da164ad269e6f61d744b6cfabe852175f93f77f22db88483a67154c7310ddb1c
+  TRIVY_IMAGE: ghcr.io/msilabben/trivy@sha256:628020d30ae83c81506cf831b569bdc719a2e677d0a6e3f8ee2992069633b826
+  CONFTEST_IMAGE: ghcr.io/msilabben/conftest@sha256:018efc2db7d23a44790115c3a5fcb776bee60533d21814451c81a83f9ba2e903
 
 jobs:
   pre-commit:
-    if: false # Remove this to enable pre-commit
+    if: true # Remove this to enable pre-commit
     runs-on: ubuntu-22.04
     name: Run pre-commit
     steps:
-      - uses: actions/checkout@REPLACE_WITH_PINNED_SHA
-      - uses: actions/setup-python@REPLACE_WITH_PINNED_SHA
-      - uses: pre-commit/action@REPLACE_WITH_PINNED_SHA
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405
+      - uses: pre-commit/action@2c7b3805fd2a0fd8c1884dcaebf91fc102a13ecd
 
   gitleaks:
-    if: false # Remove this to enable gitleaks
+    if: true # Remove this to enable gitleaks
     uses: ./.github/workflows/gitleaks.yml
 
   backend-tests:
-    if: false # Remove this to enable pytest
+    if: true # Remove this to enable pytest
     uses: ./.github/workflows/pytest.yml
     with:
       working-directory: backend
       python-version: "3.11"
 
   semgrep:
-    if: false # Remove this to enable SAST with semgrep
+    if: true # Remove this to enable SAST with semgrep
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@REPLACE_WITH_PINNED_SHA
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
 
       - name: Log in to GHCR
-        uses: docker/login-action@REPLACE_WITH_PINNED_SHA
+        uses: docker/login-action@650006c6eb7dba73a995cc03b0b2d7f5ca915bee
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install Cosign
-        uses: sigstore/cosign-installer@REPLACE_WITH_PINNED_SHA
+        uses: sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6
 
       - name: Verify Semgrep image signature
         run: |
@@ -70,32 +70,32 @@ jobs:
             semgrep scan --sarif --sarif-output=semgrep_results.sarif
 
       - name: Upload Semgrep SARIF artifact
-        uses: actions/upload-artifact@REPLACE_WITH_PINNED_SHA
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
           name: semgrep-results
           path: semgrep_results.sarif
 
       - name: Upload Semgrep SARIF to GitHub
-        uses: github/codeql-action/upload-sarif@REPLACE_WITH_PINNED_SHA
+        uses: github/codeql-action/upload-sarif@8aad20d150bbac5944a9f9d289da16a4b0d87c1e
         with:
           sarif_file: semgrep_results.sarif
           category: semgrep
 
   trivy:
-    if: false # Remove this to enable SAST/SCA with trivy
+    if: true # Remove this to enable SAST/SCA with trivy
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@REPLACE_WITH_PINNED_SHA
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
 
       - name: Log in to GHCR
-        uses: docker/login-action@REPLACE_WITH_PINNED_SHA
+        uses: docker/login-action@650006c6eb7dba73a995cc03b0b2d7f5ca915bee
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install Cosign
-        uses: sigstore/cosign-installer@REPLACE_WITH_PINNED_SHA
+        uses: sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6
 
       - name: Verify Trivy image signature
         run: |
@@ -113,33 +113,33 @@ jobs:
             trivy fs --format sarif -o trivy_results.sarif --scanners vuln,config,secret,license .
 
       - name: Upload Trivy SARIF artifact
-        uses: actions/upload-artifact@REPLACE_WITH_PINNED_SHA
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
           name: trivy-results
           path: trivy_results.sarif
 
       - name: Upload Trivy SARIF to GitHub
-        uses: github/codeql-action/upload-sarif@REPLACE_WITH_PINNED_SHA
+        uses: github/codeql-action/upload-sarif@8aad20d150bbac5944a9f9d289da16a4b0d87c1e
         with:
           sarif_file: trivy_results.sarif
           category: trivy
 
   opa:
-    if: false # Remove this to enable Policy as Code (PaC) with Open Policy Agent
+    if: true # Remove this to enable Policy as Code (PaC) with Open Policy Agent
     needs: [semgrep, trivy]
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@REPLACE_WITH_PINNED_SHA
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
 
       - name: Log in to GHCR
-        uses: docker/login-action@REPLACE_WITH_PINNED_SHA
+        uses: docker/login-action@650006c6eb7dba73a995cc03b0b2d7f5ca915bee
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install Cosign
-        uses: sigstore/cosign-installer@REPLACE_WITH_PINNED_SHA
+        uses: sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6
 
       - name: Verify Conftest image signature
         run: |
@@ -149,7 +149,7 @@ jobs:
             "${CONFTEST_IMAGE}"
 
       - name: Download SARIF artifacts
-        uses: actions/download-artifact@REPLACE_WITH_PINNED_SHA
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
 
       - name: Verify Semgrep findings
         run: |
