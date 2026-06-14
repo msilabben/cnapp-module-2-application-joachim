@@ -31,27 +31,27 @@ jobs:
             echo "SCAN_PATH=frontend" >> $GITHUB_ENV
           fi
 
-      # - name: Generate SBOM
-      #   run: |
-      #     trivy fs "$SCAN_PATH" \
-      #       --format cyclonedx \
-      #       --output "sbom-${COMPONENT}-${GITHUB_REF_NAME}.json"
-          
-      # - name: Generate GitHub App token
-      #   id: app-token
-      #   uses: actions/create-github-app-token@v1
-      #   with:
-      #     app-id: ${{ secrets.RELEASE_PLEASE_APP_ID }}
-      #     private-key: ${{ secrets.RELEASE_PLEASE_PRIVATE_KEY }}
+      - name: Generate SBOM
+        run: |
+          trivy fs "$SCAN_PATH" \
+            --format cyclonedx \
+            --output "sbom-${COMPONENT}-${GITHUB_REF_NAME}.json"
+
+      - name: Generate GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.RELEASE_PLEASE_APP_ID }}
+          private-key: ${{ secrets.RELEASE_PLEASE_PRIVATE_KEY }}
 
 
-      # - name: Upload SBOM to release
-      #   uses: softprops/action-gh-release@v2
-      #   with:
-      #     tag_name: ${{ github.ref_name }}
-      #     files: sbom-${{ env.COMPONENT }}-${{ github.ref_name }}.json
-      #   env:
-      #     GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+      - name: Upload SBOM to release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          files: sbom-${{ env.COMPONENT }}-${{ github.ref_name }}.json
+        env:
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
 
   backend-dev:
     if: ${{ startsWith(github.ref, 'refs/tags/backend@v') }}
