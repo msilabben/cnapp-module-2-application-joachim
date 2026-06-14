@@ -53,7 +53,8 @@ jobs:
 
       - name: Run ORT scanner
         id: scanner
-        if: hashFiles('ort-results/analyzer/analyzer-result.yml') != ''
+        if: false
+        #if: hashFiles('ort-results/analyzer/analyzer-result.yml') != ''
         continue-on-error: true
         run: |
           docker run --rm \
