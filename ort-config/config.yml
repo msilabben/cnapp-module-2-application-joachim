@@ -1,8 +1,4 @@
 ort:
-  analyzer:
-    enabledPackageManagers:
-      - NPM
-
   scanner:
     config:
       ScanCode:

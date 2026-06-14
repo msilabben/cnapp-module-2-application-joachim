@@ -69,7 +69,7 @@ jobs:
 
       - name: Run ORT evaluator
         id: evaluator
-        if: hashFiles('ort-results/scanner/scan-result.yml') != ''
+        if: hashFiles('ort-results/analyzer/analyzer-result.yml') != ''
         continue-on-error: true
         run: |
           docker run --rm \
@@ -78,25 +78,21 @@ jobs:
             --volume "$PWD/${ORT_RESULTS_DIR}/evaluator:/out" \
             "${ORT_IMAGE}" \
             evaluate \
-            --ort-file /project/${ORT_RESULTS_DIR}/scanner/scan-result.yml \
+            --ort-file /project/${ORT_RESULTS_DIR}/analyzer/analyzer-result.yml \
             --output-dir /out \
             --output-formats JSON,YAML
 
       - name: Run ORT reporter
         if: always() && (
           hashFiles('ort-results/evaluator/evaluation-result.yml') != '' ||
-          hashFiles('ort-results/scanner/scan-result.yml') != '' ||
           hashFiles('ort-results/analyzer/analyzer-result.yml') != ''
           )
         env:
           EVALUATOR_RESULT_HASH: ${{ hashFiles('ort-results/evaluator/evaluation-result.yml') }}
-          SCANNER_RESULT_HASH: ${{ hashFiles('ort-results/scanner/scan-result.yml') }}
           ANALYZER_RESULT_HASH: ${{ hashFiles('ort-results/analyzer/analyzer-result.yml') }}
         run: |
           if [ -n "${EVALUATOR_RESULT_HASH}" ]; then
             ORT_INPUT_FILE="/project/${ORT_RESULTS_DIR}/evaluator/evaluation-result.yml"
-          elif [ -n "${SCANNER_RESULT_HASH}" ]; then
-            ORT_INPUT_FILE="/project/${ORT_RESULTS_DIR}/scanner/scan-result.yml"
           elif [ -n "${ANALYZER_RESULT_HASH}" ]; then
             ORT_INPUT_FILE="/project/${ORT_RESULTS_DIR}/analyzer/analyzer-result.yml"
           fi
