@@ -80,7 +80,9 @@ jobs:
             evaluate \
             --ort-file /project/${ORT_RESULTS_DIR}/analyzer/analyzer-result.yml \
             --output-dir /out \
-            --output-formats JSON,YAML
+            --output-formats JSON,YAML \
+            --rules-file /home/ort/.ort/config/evaluator.rules.kts \
+            --license-classifications-file /home/ort/.ort/config/license-classifications.yml
 
       - name: Run ORT reporter
         if: always() && (
