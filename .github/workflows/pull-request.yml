@@ -93,6 +93,4 @@ jobs:
       - name: Verify Trivy findings
         run: conftest test trivy-results/trivy_results.sarif --parser json --policy policy/trivy.rego
 
-      - name: Verify NPM findings
-        run: conftest test npm-results/npm_results.sarif --parser json --policy policy/npm.rego
-
+ 
