@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.7](https://github.com/msilabben/cnapp-module-2-application/compare/backend@v0.4.6...backend@v0.4.7) (2026-06-14)
+
+
+### Bug Fixes
+
+* pyproject toml ([aca4950](https://github.com/msilabben/cnapp-module-2-application/commit/aca495071c626aa5eb8b3f845aa2319a9b7cb586))
+* pyproject toml ([d97e273](https://github.com/msilabben/cnapp-module-2-application/commit/d97e273c6b99fab536a126c558fdbc531e11664c))
+
 ## [0.4.6](https://github.com/msilabben/cnapp-module-2-application/compare/backend@v0.4.5...backend@v0.4.6) (2026-06-14)
 
 
