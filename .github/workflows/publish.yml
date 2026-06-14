@@ -63,34 +63,34 @@ jobs:
       environment: dev
     secrets: inherit
 
-  # backend-prod:
-  #   needs: backend-dev
-  #   if: ${{ startsWith(github.ref, 'refs/tags/backend@v') }}
-  #   uses: ./.github/workflows/build-and-push-ghcr.yml
-  #   with:
-  #     image-name: backend
-  #     context: backend
-  #     dockerfile: Dockerfile
-  #     environment: prod
-  #   secrets: inherit
+  backend-prod:
+    needs: backend-dev
+    if: ${{ startsWith(github.ref, 'refs/tags/backend@v') }}
+    uses: ./.github/workflows/build-and-push-ghcr.yml
+    with:
+      image-name: backend
+      context: backend
+      dockerfile: Dockerfile
+      environment: prod
+    secrets: inherit
 
-  # frontend-dev:
-  #   if: ${{ startsWith(github.ref, 'refs/tags/frontend@v') }}
-  #   uses: ./.github/workflows/build-and-push-ghcr.yml
-  #   with:
-  #     image-name: frontend
-  #     context: frontend
-  #     dockerfile: Dockerfile
-  #     environment: dev
-  #   secrets: inherit
+  frontend-dev:
+    if: ${{ startsWith(github.ref, 'refs/tags/frontend@v') }}
+    uses: ./.github/workflows/build-and-push-ghcr.yml
+    with:
+      image-name: frontend
+      context: frontend
+      dockerfile: Dockerfile
+      environment: dev
+    secrets: inherit
 
-  # frontend-prod:
-  #   needs: frontend-dev
-  #   if: ${{ startsWith(github.ref, 'refs/tags/frontend@v') }}
-  #   uses: ./.github/workflows/build-and-push.yml
-  #   with:
-  #     image-name: frontend
-  #     context: frontend
-  #     dockerfile: Dockerfile
-  #     environment: prod
-  #   secrets: inherit
+  frontend-prod:
+    needs: frontend-dev
+    if: ${{ startsWith(github.ref, 'refs/tags/frontend@v') }}
+    uses: ./.github/workflows/build-and-push.yml
+    with:
+      image-name: frontend
+      context: frontend
+      dockerfile: Dockerfile
+      environment: prod
+    secrets: inherit
