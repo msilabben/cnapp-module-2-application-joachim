@@ -26,7 +26,6 @@ permissions:
 jobs:
   publish:
     name: Publish ${{ inputs.image-name }}
-    needs: discover
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
     strategy:
