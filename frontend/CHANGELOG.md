@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.3](https://github.com/msilabben/cnapp-module-2-application/compare/frontend@v1.3.2...frontend@v1.3.3) (2026-06-14)
+
+
+### Bug Fixes
+
+* test gpl ([8771a6e](https://github.com/msilabben/cnapp-module-2-application/commit/8771a6eea4547889a2dbd62c421fbac4c498d1bd))
+* test with local gpl package ([75555f6](https://github.com/msilabben/cnapp-module-2-application/commit/75555f6a8fe5201d84b8c670ed0336b9ae0be4cf))
+
 ## [1.3.2](https://github.com/msilabben/cnapp-module-2-application/compare/frontend@v1.3.1...frontend@v1.3.2) (2026-06-14)
 
 
