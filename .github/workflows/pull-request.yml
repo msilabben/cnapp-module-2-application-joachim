@@ -34,7 +34,7 @@ jobs:
     if: true # Remove this to enable SAST with semgrep
     runs-on: ubuntu-22.04
     container:
-      image: ghcr.io/msilabben/semgrep:sha256-f7f4291a4df9b29e0bbe4271379cc41628079cb2576d9585fd6e6717d7985acb
+      image: ghcr.io/msilabben/semgrep:sha256:f7f4291a4df9b29e0bbe4271379cc41628079cb2576d9585fd6e6717d7985acb
     steps:
       - uses: actions/checkout@v4
 
