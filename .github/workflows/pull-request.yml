@@ -10,12 +10,12 @@ permissions:
   security-events: write
 
 env:
-  COSIGN_CERTIFICATE_IDENTITY: https://github.com/msilabben/cnapp-module-4-builder/.github/workflows/push-main.yml@refs/heads/main
+  COSIGN_CERTIFICATE_IDENTITY: https://github.com/msilabben/cnapp-module-4-builder-joachim/.github/workflows/push-main.yml@refs/heads/main
   COSIGN_CERTIFICATE_OIDC_ISSUER: https://token.actions.githubusercontent.com
 
-  SEMGREP_IMAGE: ghcr.io/msilabben/semgrep@sha256:da164ad269e6f61d744b6cfabe852175f93f77f22db88483a67154c7310ddb1c
-  TRIVY_IMAGE: ghcr.io/msilabben/trivy@sha256:628020d30ae83c81506cf831b569bdc719a2e677d0a6e3f8ee2992069633b826
-  CONFTEST_IMAGE: ghcr.io/msilabben/conftest@sha256:018efc2db7d23a44790115c3a5fcb776bee60533d21814451c81a83f9ba2e903
+  SEMGREP_IMAGE: ghcr.io/msilabben/cnapp-module-4-builder-joachim/semgrep:sha256-1b32220c43de421d4f7bb8096db9cbb017bf15be7d50606337ccb5ab2aab5fe8
+  TRIVY_IMAGE: ghcr.io/msilabben/cnapp-module-4-builder-joachim/trivy:sha256-848014f11667f6e83648a4b5301b571fdf180db54e86506bbf1b7518b528881e
+  CONFTEST_IMAGE: ghcr.io/msilabben/cnapp-module-4-builder-joachim/conftest:sha256-90b5f2d8bd1c08eddcbd6d684029b78c8ae608780c18437f309ed443b392969c
 
 jobs:
   pre-commit:
