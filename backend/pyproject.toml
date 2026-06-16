@@ -9,6 +9,7 @@ dependencies = [
 
 [tool.uv]
 package = true
+exclude-newer = "365 days"
 
 [dependency-groups]
 dev = [
