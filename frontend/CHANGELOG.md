@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.3](https://github.com/msilabben/cnapp-module-2-application-joachim/compare/frontend@v1.4.2...frontend@v1.4.3) (2026-06-16)
+
+
+### Bug Fixes
+
+* use Docker Hardened Images ([6a4803e](https://github.com/msilabben/cnapp-module-2-application-joachim/commit/6a4803e6193607d902e1b67f06615c1bbc7e1d60))
+
 ## [1.4.2](https://github.com/msilabben/cnapp-module-2-application-joachim/compare/frontend@v1.4.1...frontend@v1.4.2) (2026-06-16)
 
 
